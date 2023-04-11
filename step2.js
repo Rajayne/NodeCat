@@ -12,8 +12,13 @@ function cat(path) {
 }
 
 async function webCat(url) {
-    let res = await axios.get(`${url}`)
-    console.log(res.data)
+    try {
+        let res = await axios.get(`${url}`)
+        console.log(res.data)
+    } catch (e) {
+        console.log(`Error fetching ${url}`)
+        console.log(`Error: Request failed with status code ${e.response.status}`)
+    }
 }
 
 let arg = process.argv[2]
